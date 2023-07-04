@@ -34,9 +34,11 @@ console.log(year2014[0]['Win conditions'])
 
 function Finaller(arr) {
 	
-    const finalss = fifaData.filter(year  => year['Stage'] === 'Final')
+    const finalss = arr.filter(year  => year['Stage'] === 'Final')
 	return finalss;
 }
+
+console.log(Finaller(fifaData))
 
 
 
@@ -48,12 +50,11 @@ function Finaller(arr) {
 	*/
 
 function Yillar(arr, cbfunc) {
-	Finaller(fifaData);
-	const yearss = finalss.map(year  => year['Year'])
-    return yearss;
+	const years = cbfunc(arr).map(year => year["Year"]);
+	return years;
 }
 
-
+//console.log(Yillar(Finaller(fifaData)))
 
 /*  Görev 4: 
 	Bir higher-order fonksiyonunu olan Kazananlar isimli fonksiyona aşağıdakileri uygulayın:  
@@ -63,9 +64,10 @@ function Yillar(arr, cbfunc) {
 	💡 İPUCU: Beraberlikler(ties) için şimdilik endişelenmeyin (Detaylı bilgi için README dosyasına bakabilirsiniz.)
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */ 
 
-function Kazananlar(/* kodlar buraya */) {
+function Kazananlar(arr, cbfunc) {
+    const kazananArr = cbfunc(arr).map(({homeN, homeG, awayN, awayG }) => ({homeN["Home Team Name"], homeG["Home Team Goals"] , awayN["Away Team Name"], awayG["Away Team Goals"] }));
 	
-    /* kodlar buraya */
+	return kazananlar;
 	
 }
 
