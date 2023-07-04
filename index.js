@@ -10,7 +10,9 @@ const { fifaData } = require('./fifa.js')
 //console.log(fifaData[0])
 
 const year2014 = fifaData.filter(year  => year.Year === 2014 && year['Stage'] === 'Final')
+
 console.log(year2014[0]["Home Team Name"])
+
 //(b) 2014 Dünya kupası Finali Deplasman takım ismi  (dizide "Away Team Name" anahtarı)
 console.log(year2014[0]["Away Team Name"])
 
@@ -65,11 +67,23 @@ function Yillar(arr, cbfunc) {
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */ 
 
 function Kazananlar(arr, cbfunc) {
-    const kazananArr = cbfunc(arr).map(({homeN, homeG, awayN, awayG }) => ({homeN["Home Team Name"], homeG["Home Team Goals"] , awayN["Away Team Name"], awayG["Away Team Goals"] }));
-	
+    const kazananW = cbfunc(arr);
+
+	const kazananlar = kazananW.map((kaza) => {
+		if(kaza["Home Team Goals"] > kaza["Away Team Goals"]) {
+			return kaza["Home Team Name"];
+		} else if (kaza["Home Team Goals"] < kaza["Away Team Goals"]){
+			return kaza["Away Team Name"];
+		} 
+	})
+
 	return kazananlar;
-	
 }
+
+
+	
+	
+
 
 
 
@@ -84,11 +98,18 @@ function Kazananlar(arr, cbfunc) {
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
 */
 
-function YillaraGoreKazananlar(/* kodlar buraya */) {
+function YillaraGoreKazananlar(arr, Finaller, Yillar, Kazananlar) {
+	const years = Yillar(arr);
+	const winner = Kazananlar(arr, Finaller);
 	
-/* kodlar buraya */
+	const sentences = years.map((year, ind) => {
+		const country = winner[ind];
+		return `${year} yılında, ${country} dünya kupasını kazandı!`;
+	}); return sentences; 
 
 }
+
+console.log('Gorev5:')
 
 
 /*  Görev 6: 
