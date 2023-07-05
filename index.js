@@ -98,9 +98,9 @@ function Kazananlar(arr, cbfunc) {
 	💡 İPUCU: her cümlenin adım 4'te belirtilen cümleyle birebir aynı olması gerekmektedir.
 */
 
-function YillaraGoreKazananlar(arr, Finaller, Yillar, Kazananlar) {
-	const years = Yillar(arr);
-	const winner = Kazananlar(arr, Finaller);
+function YillaraGoreKazananlar(arr, fFinaller, fYillar, fKazananlar) {
+	const years = fYillar(arr, fFinaller);
+	const winner = fKazananlar(arr, fFinaller);
 	
 	const sentences = years.map((year, ind) => {
 		const country = winner[ind];
@@ -109,7 +109,7 @@ function YillaraGoreKazananlar(arr, Finaller, Yillar, Kazananlar) {
 
 }
 
-console.log('Gorev5:')
+
 
 
 /*  Görev 6: 
@@ -122,16 +122,26 @@ console.log('Gorev5:')
 	
 	3. Sonucun 2. ondalığını yuvarlayıp, bulunan değeri döndürecek(return)
 	
-	💡 İPUCU: .reduce, .toFixed (dizilim(syntax) için MDN'ye bakın) kullan, ve bunu 2 adımda yapın) 
+	💡 İPUCU: .reduce, .toFixed() (dizilim(syntax) için MDN'ye bakın) kullan, ve bunu 2 adımda yapın) 
 	
 */
 
-function OrtalamaGolSayisi(/* kodlar buraya */) {
+function OrtalamaGolSayisi(fFinallerData) {
 	
-    /* kodlar buraya */
-	
+	//tum ev sahibi golleri + away takim golleri / toplam mac sayisi 
+    const goller = fFinallerData.map((m) => {
+		return m["Home Team Goals"] + m["Away Team Goals"];
+		
+	})
+	console.log('goller burada:', goller);
+	const totalGoller = goller.reduce((total, goller) => total + goller, 0);
+	const length = goller.length;
+	const averageGol = (totalGoller/length);
+	const roundedGol = averageGol.toFixed(2);
+	return roundedGol;
 }
 
+console.log('Ort:', OrtalamaGolSayisi(Finaller(fifaData)))
 
 
 /// EKSTRA ÇALIŞMALAR ///
@@ -142,9 +152,9 @@ function OrtalamaGolSayisi(/* kodlar buraya */) {
 	İpucu: "takım kısaltmaları" (team initials) için datada araştırma yapın!
 İpucu: `.reduce` Kullanın*/
 
-function UlkelerinKazanmaSayilari(/* kodlar buraya */) {
+function UlkelerinKazanmaSayilari(data, initials) {
 	
-    /* kodlar buraya */
+    
 	
 }
 
@@ -153,9 +163,9 @@ function UlkelerinKazanmaSayilari(/* kodlar buraya */) {
 /*  BONUS 2:  
 EnCokGolAtan() isminde bir fonksiyon yazın, `data` yı parametre olarak alsın ve Dünya kupası finallerinde en çok gol atan takımı döndürsün */
 
-function EnCokGolAtan(/* kodlar buraya */) {
+function EnCokGolAtan() {
 	
-    /* kodlar buraya */
+    
 	
 }
 
@@ -163,9 +173,9 @@ function EnCokGolAtan(/* kodlar buraya */) {
 /*  BONUS 3: 
 EnKotuDefans() adında bir fonksiyon yazın, `data` yı parametre olarak alsın ve Dünya kupasında finallerinde en çok golü yiyen takımı döndürsün*/
 
-function EnKotuDefans(/* kodlar buraya */) {
+function EnKotuDefans() {
 	
-    /* kodlar buraya */
+    
 	
 }
 
